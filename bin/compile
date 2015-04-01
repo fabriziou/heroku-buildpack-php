@@ -188,7 +188,7 @@ status "Installing system packages..."
 
 # we need to run things in here, set it up!
 ln -s $BUILD_DIR/.heroku /app/.heroku
-export PATH=/app/.heroku/php/bin:$PATH
+export PATH=something:/app/.heroku/php/bin:$PATH
 
 if [[ "${PHP_VERSION}" ]]; then
     PHP_DIST_URL="$S3_URL/php-$PHP_VERSION.tar.gz"
@@ -402,5 +402,3 @@ if [[ ! -f "Procfile" ]]; then
     echo "web: $bindir/heroku-$engine-apache2" > Procfile
     notice_inline "No Procfile, using 'web: $bindir/heroku-$engine-apache2'."
 fi
-
-export PATH=/app/.heroku/ngrok/bin:$PATH
