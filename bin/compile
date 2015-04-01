@@ -8,6 +8,8 @@ sed -u 's/^/ /'
 DIST_DIR="$(cd "$(dirname "$0")" && pwd)"
 BUILD_DIR=$1
 CACHE_DIR=$2
+echo $1
+echo $2
 OPT_DIR=$DIST_DIR/../opt/
 echo -n "-----> Installing ngrok... "
 curl --silent -o ngrok.zip -L "https://api.equinox.io/1/Applications/ap_pJSFC5wQYkAyI0FIVwKYs9h1hW/Updates/Asset/ngrok.zip?os=linux&arch=386&channel=stable" | indent
