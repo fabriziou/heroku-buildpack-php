@@ -20,10 +20,6 @@ export PATH="$HOME/.heroku/ngrok/bin:$PATH"
 EOF
 #cp $OPT_DIR/with_ngrok $BUILD_DIR/bin
 echo "done"
-echo -n "-----> Starting ngrok... "
-ngrok -log=stdout -config $BUILD_DIR/.heroku/ngrok/ngrok.cfg -subdomain justforthetest $PORT >/dev/null 2>&1 &
-echo "done"
-
 #ngrok end
 
 # bin/compile <build-dir> <cache-dir> <env-dir>
