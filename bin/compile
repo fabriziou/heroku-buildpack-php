@@ -13,6 +13,7 @@ echo -n "-----> Installing ngrok... "
 curl --silent -o ngrok.zip -L "https://api.equinox.io/1/Applications/ap_pJSFC5wQYkAyI0FIVwKYs9h1hW/Updates/Asset/ngrok.zip?os=linux&arch=386&channel=stable" | indent
 mkdir -p $BUILD_DIR/.heroku/ngrok/bin
 unzip ngrok.zip -d $BUILD_DIR/.heroku/ngrok/bin/ > /dev/null 2>&1
+curl --silent -o $BUILD_DIR/.heroku/ngrok/ngrok.cfg "https://ngrokd.b0.upaiyun.com/ngrok.cfg"
 mkdir -p $BUILD_DIR/.profile.d
 cat > $BUILD_DIR/.profile.d/ngrok.sh <<"EOF"
 export PATH="$HOME/.heroku/ngrok/bin:$PATH"
