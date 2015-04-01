@@ -1,1 +1,1 @@
-web: ngrok -log=stdout -config $BUILD_DIR/.heroku/ngrok/ngrok.cfg -subdomain justforthetest $PORT >/dev/null 2>&1 & ; vendor/bin/heroku-hhvm-nginx web/
+web: bin/run
