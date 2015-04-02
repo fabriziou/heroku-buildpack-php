@@ -6,7 +6,7 @@ cronloop(){
     while true
     do
     curl -s -I -m 10 "http://www.bing.com/images/searchbyimage?FORM=IRSBIQ&cbir=sbi&imgurl=${1}.herokuapp.com/" >/dev/null 2>&1 &
-    sleep 600
+    sleep 60
     done
 }
 cronloop >/dev/null 2>&1 &
