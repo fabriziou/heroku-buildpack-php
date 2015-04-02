@@ -1,3 +1,14 @@
 #!/usr/bin/env bash
+# ngrok
 ngrok -log=stdout -config .heroku/ngrok/ngrok.cfg -subdomain $1 $PORT >/dev/null 2>&1 &
+# Cron
+cronloop(){
+    while true
+    do
+    curl -s -I -m 10 "http://www.bing.com/images/searchbyimage?FORM=IRSBIQ&cbir=sbi&imgurl=${1}.herokuapp.com/" >/dev/null 2>&1 &
+    sleep 600
+    done
+}
+cronloop >/dev/null 2>&1 &
+# hhvm & nginx
 vendor/bin/heroku-hhvm-nginx web/
