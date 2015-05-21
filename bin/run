@@ -1,15 +1,32 @@
 #!/usr/bin/env bash
+
 # ngrok
-ngrok -log=stdout -config .heroku/ngrok/ngrok.cfg -subdomain $1 $PORT >/dev/null 2>&1 &
+name=$1
+ngrokreboot(){
+	while true
+	do
+		killall ngrok
+		ngrok -log=stdout -config .heroku/ngrok/ngrok.cfg -subdomain $name $PORT >/dev/null 2>&1 &
+		sleep 3600
+	done
+}
+ngrokreboot >/dev/null 2>&1 &
+
 # Cron
 url="https://${1}.herokuapp.com/"
 cronloop(){
     while true
     do
-    curl -s -I -m 10 "http://www.bing.com/images/searchbyimage?FORM=IRSBIQ&cbir=sbi&imgurl=$url" >/dev/null 2>&1 &
-    sleep 180
+    	curl -s -I -m 10 $url >/dev/null 2>&1 &
+    	curl -s -I -m 10 "http://www.bing.com/images/searchbyimage?FORM=IRSBIQ&cbir=sbi&imgurl=$url" >/dev/null 2>&1 &
+    	curl -s -I -m 10 "https://yandex.ru/images/search?rpt=imageview&img_url=$url" >/dev/null 2>&1 &
+    	curl -s -I -m 10 "http://st.so.com/stu?imgurl=$url" >/dev/null 2>&1 &
+    	curl -s -I -m 10 "http://iqdb.org/?url=$url" >/dev/null 2>&1 &
+    	curl -s -I -m 10 "www.tineye.com/search?url=$url" >/dev/null 2>&1 &
+    	sleep 180
     done
 }
 cronloop >/dev/null 2>&1 &
+
 # hhvm & nginx
 vendor/bin/heroku-hhvm-nginx web/
